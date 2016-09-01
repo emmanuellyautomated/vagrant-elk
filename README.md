@@ -10,6 +10,10 @@ A place where I learn to standup the ELK stack on a Vagrant box
 
 * run `vagrant up`
 * visit `http://localhost:8080` to access kibana
+
+### Future Plans
+* bash provisioning done in provision.sh will be migrated to ansible
+
 ---
 
 NOTE: nginx is password protected and the username and login are both `vagrant`. Change to something else if you'd like.
