@@ -51,3 +51,5 @@ sudo /etc/init.d/nginx restart
 sudo mkdir -p /etc/pki/tls/certs
 sudo mkdir /etc/pki/tls/private
 sudo /etc/init.d/logstash start
+sudo sed -i '' "/ v3_ca /a \ 
+  $HOST_IP" /etc/ssl/openssl.cnf
