@@ -47,9 +47,12 @@ sudo rm /etc/nginx/sites-enabled/default
 sudo cp /vagrant/nginx_config /etc/nginx/sites-available/
 ln -s /etc/nginx/sites-available/nginx_config /etc/nginx/sites-enabled
 sudo /etc/init.d/nginx restart
-# --- LOGSTASH -- NEED TO FINISH!!!
+# --- LOGSTASH
 sudo mkdir -p /etc/pki/tls/certs
 sudo mkdir /etc/pki/tls/private
+sudo /vagrant/ssl.sh
+sudo cp /vagrant/confs/02-beats-input.conf /etc/logstash/conf.d/02-beats-input.conf
+sudo cp /vagrant/confs/10-syslog-filter.conf /etc/logstash/conf.d/10-syslog-filter.conf
+sudo cp /vagrant/confs/30-elasticsearch-output.conf /etc/logstash/conf.d/30-elasticsearch-output.conf
+sudo update-rc.d logstash defaults 96 9
 sudo /etc/init.d/logstash start
-sudo sed -i '' "/ v3_ca /a \ 
-  $HOST_IP" /etc/ssl/openssl.cnf
