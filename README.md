@@ -4,13 +4,13 @@ A place where to learn how to standup the ELK stack on a Vagrant box. A subnet w
 ### Usage
 * Be sure you have this going on in your root directory:
 
-    > |- Vagrantfile
-    > |- provision.sh
-    > |- confs/
-    > |---- nginx_conf
-    > |---- 02-beats-input.conf
-    > |---- 10-syslog-filter.conf
-    > |---- 30-elasticsearch-output.conf
+    + |- Vagrantfile
+    + |- provision.sh
+    + |- confs/
+    + |---- nginx_conf
+    + |---- 02-beats-input.conf
+    + |---- 10-syslog-filter.conf
+    + |---- 30-elasticsearch-output.conf
 
 * run `vagrant up` if both `ELK_APP_1` and `ELK_APP_1_PROVISION` are set
     - otherwise `ELK_APP_1=/path/to/repo ELK_APP_1_PROVISION=/path/to/script vagrant up`
