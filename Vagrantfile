@@ -37,6 +37,6 @@ Vagrant.configure(API_VERSION) do |config|
     end 
     nasanomics.vm.network :private_network, ip: "192.168.0.20"
     nasanomics.vm.synced_folder "#{ENV['ELK_APP_1']}/", "/vagrant"
-    nasanomics.vm.provision :shell, path: "#{ENV['ELK_APP_1']}/vps/vagrant/provision.sh"
+    nasanomics.vm.provision :shell, path: "#{ENV['ELK_APP_1_PROVISION']}"
   end
 end
