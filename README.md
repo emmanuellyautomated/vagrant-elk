@@ -23,4 +23,6 @@ A place where to learn how to standup the ELK stack on a Vagrant box. A subnet w
 
 ---
 
-NOTE: nginx is password protected and the username and login are both `vagrant`. Change to something else if you'd like.
+NOTES:
+* nginx is password protected and the username and login are both `vagrant`. Change to something else if you'd like.
+* this project follows work on [digital ocean](https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elk-stack-on-ubuntu-14-04)
