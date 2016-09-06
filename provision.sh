@@ -54,7 +54,7 @@ sudo ./load.sh
 # --- NGINX
 sudo htpasswd -b -c /etc/nginx/htpasswd.users vagrant vagrant
 sudo rm /etc/nginx/sites-enabled/default
-sudo cp /vagrant/nginx_config /etc/nginx/sites-available/
+sudo cp /vagrant/confs/nginx_config /etc/nginx/sites-available/
 ln -s /etc/nginx/sites-available/nginx_config /etc/nginx/sites-enabled
 sudo /etc/init.d/nginx restart
 # --- LOGSTASH
