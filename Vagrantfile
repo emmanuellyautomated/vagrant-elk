@@ -12,7 +12,7 @@ echo "export HOST_IP=#{host_ip}" | tee -a /home/vagrant/.profile
 CMD
 end
 
-export_host_ip = <<SCRIPT
+$export_host_ip = <<SCRIPT
 #{env_var_cmd}
 SCRIPT
 
@@ -25,8 +25,18 @@ Vagrant.configure(API_VERSION) do |config|
       v.cpus = 2 
       v.customize ["modifyvm", :id, "--name", "elk"]
     end
-    elk.vm.network "forwarded_port", host: 8888, guest: 80
-    elk.vm.provision :shell, inline: export_host_ip
+    elk.vm.network :private_network, ip: "192.168.0.10"
+    elk.vm.provision :shell, inline: $export_host_ip
     elk.vm.provision :shell, path: "./provision.sh"
+  end
+
+  config.vm.define "NASANOMICS" do |nasanomics|
+    nasanomics.vm.box = "debian/jessie64"
+    nasanomics.vm.provider "virtualbox" do |v| 
+      v.customize ["modifyvm", :id, "--name", "nasanomics"]
+    end 
+    nasanomics.vm.network :private_network, ip: "192.168.0.20"
+    nasanomics.vm.synced_folder "#{ENV['ELK_APP_1']}/", "/vagrant"
+    nasanomics.vm.provision :shell, path: "#{ENV['ELK_APP_1']}/vps/vagrant/provision.sh"
   end
 end
