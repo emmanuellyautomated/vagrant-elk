@@ -18,6 +18,7 @@ A place where to learn how to standup the ELK stack on a Vagrant box. A subnet w
 * visit nasanomics (or your app) at 192.168.20
 
 ### Future Plans
+* configure Filebeat on app server to communicate with Logstash
 * bash provisioning done in provision.sh will be migrated to ansible
 
 ---
