@@ -4,11 +4,14 @@
 
 host_ip=`ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}' | tail -1`
 
+IP1 = "192.168.0.10"
+IP2 = "192.168.0.20"
+
 env_var_cmd = ""
 if ENV['HOST_IP']
   value = ENV['HOST_IP']
   env_var_cmd = <<CMD
-echo "export HOST_IP=#{host_ip}" | tee -a /home/vagrant/.profile
+echo "export HOST_IP=#{IP1}" | tee -a /home/vagrant/.profile
 CMD
 end
 
@@ -25,7 +28,7 @@ Vagrant.configure(API_VERSION) do |config|
       v.cpus = 2 
       v.customize ["modifyvm", :id, "--name", "elk"]
     end
-    elk.vm.network :private_network, ip: "192.168.0.10"
+    elk.vm.network :private_network, ip: "#{IP1}"
     elk.vm.provision :shell, inline: $export_host_ip
     elk.vm.provision :shell, path: "./provision.sh"
   end
@@ -35,7 +38,7 @@ Vagrant.configure(API_VERSION) do |config|
     nasanomics.vm.provider "virtualbox" do |v| 
       v.customize ["modifyvm", :id, "--name", "nasanomics"]
     end 
-    nasanomics.vm.network :private_network, ip: "192.168.0.20"
+    nasanomics.vm.network :private_network, ip: "#{IP2}"
     nasanomics.vm.synced_folder "#{ENV['ELK_APP_1']}/", "/vagrant"
     nasanomics.vm.provision :shell, path: "#{ENV['ELK_APP_1_PROVISION']}"
   end
