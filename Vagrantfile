@@ -28,6 +28,7 @@ Vagrant.configure(API_VERSION) do |config|
       v.cpus = 2 
       v.customize ["modifyvm", :id, "--name", "elk"]
     end
+    elk.vm.network "forwarded_port", guest: 9200, host: 9200 
     elk.vm.network :private_network, ip: "#{IP1}"
     elk.vm.provision :shell, inline: $export_host_ip
     elk.vm.provision :shell, path: "./provision.sh"
