@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This part is to ensure that communication betweeen client(s) and Logstash is authenticated
+
 source /home/vagrant/.profile
 
 key='subjectAltName = IP: ';
