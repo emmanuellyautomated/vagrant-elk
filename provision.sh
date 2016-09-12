@@ -37,9 +37,10 @@ sudo apt-get -y install elasticsearch kibana nginx apache2-utils logstash
 sudo sed -i -e 's/# network.host: 192.168.0.1/network.host: localhost/' /etc/elasticsearch/elasticsearch.yml
 sudo update-rc.d elasticsearch defaults 95 10
 sudo /etc/init.d/elasticsearch start
+sleep 2s
 # --- ELEASTICSEARCH --> index filebeat template
-sudo curl -O https://gist.githubusercontent.com/thisismitch/3429023e8438cc25b86c/raw/
-sudo curl -XPUT 'http://localhost:9200/_template/filebeat?pretty' -d@filebeat-index-template.json
+sudo curl -O https://gist.githubusercontent.com/thisismitch/3429023e8438cc25b86c/raw/filebeat-index-template.json
+sudo curl -XPUT 'http://localhost:9200/_template/filebeat?pretty' -d@filebeat-index-template.json > /dev/null 2>&1
 # --- KIBANA
 sudo sed -i -e 's/0.0.0.0/localhost/' /opt/kibana/config/kibana.yml
 sudo update-rc.d kibana defaults 96 9
@@ -50,7 +51,7 @@ sudo curl -L -O https://download.elastic.co/beats/dashboards/beats-dashboards-1.
 sudo apt-get -y install unzip
 sudo unzip beats-dashboards-*.zip
 cd beats-dashboards-*
-sudo ./load.sh
+sudo ./load.sh > /dev/null 2>&1
 # --- NGINX
 sudo htpasswd -b -c /etc/nginx/htpasswd.users vagrant vagrant
 sudo rm /etc/nginx/sites-enabled/default
