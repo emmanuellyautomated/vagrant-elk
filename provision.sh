@@ -38,7 +38,7 @@ sudo sed -i -e 's/# network.host: 192.168.0.1/network.host: localhost/' /etc/ela
 sudo update-rc.d elasticsearch defaults 95 10
 sudo /etc/init.d/elasticsearch start
 # --- ELEASTICSEARCH --> index filebeat template
-sudo curl -O https://gist.githubusercontent.com/thisismitch/3429023e8438cc25b86c/raw/d8c479e2a1adcea8b1fe86570e42abab0f10f364/filebeat-index-template.json
+sudo curl -O https://gist.githubusercontent.com/thisismitch/3429023e8438cc25b86c/raw/
 sudo curl -XPUT 'http://localhost:9200/_template/filebeat?pretty' -d@filebeat-index-template.json
 # --- KIBANA
 sudo sed -i -e 's/0.0.0.0/localhost/' /opt/kibana/config/kibana.yml
@@ -60,7 +60,7 @@ sudo /etc/init.d/nginx restart
 # --- LOGSTASH
 sudo mkdir -p /etc/pki/tls/certs
 sudo mkdir /etc/pki/tls/private
-sudo /vagrant/ssl.sh
+sudo /vagrant/ssl.sh  # create an SSL certificate in appropriate place
 sudo cp /vagrant/confs/02-beats-input.conf /etc/logstash/conf.d/02-beats-input.conf
 sudo cp /vagrant/confs/10-syslog-filter.conf /etc/logstash/conf.d/10-syslog-filter.conf
 sudo cp /vagrant/confs/30-elasticsearch-output.conf /etc/logstash/conf.d/30-elasticsearch-output.conf
