@@ -12,8 +12,8 @@ A place where to learn how to standup the ELK stack on a Vagrant box. A subnet w
     + |---- 10-syslog-filter.conf
     + |---- 30-elasticsearch-output.conf
 
-* run `vagrant up` if both `ELK_APP_1` and `ELK_APP_1_PROVISION` are set
-    - otherwise `ELK_APP_1=/path/to/repo ELK_APP_1_PROVISION=/path/to/script vagrant up`
+* run `make prepare` to set environment variables and clone client app
+* run `vagrant up`
 * visit kibana at 192.168.0.10
 * visit nasanomics (or your app) at 192.168.20
 
